@@ -2,7 +2,7 @@
 var net = require('net');
 
 
-var PORT = 4500;
+var PORT = 100;
 
 var server = net.createServer(function(socket) {
 
