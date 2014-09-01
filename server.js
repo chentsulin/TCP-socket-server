@@ -12,8 +12,11 @@ var server = net.createServer(function(socket) {
 
     socket.write('connected with the socket server');
 
+    socket.setTimeout(15000);
+
     socket.on('data', function(data) {
 
+        console.log('server receive data');
         console.log('data: ', data);
 
     });
@@ -28,11 +31,32 @@ var server = net.createServer(function(socket) {
         console.log('server connection close');
     });
 
+    socket.on('timeout', function() {
+
+        console.log('server connection timeout');
+    });
+
     socket.on('error', function() {
 
         console.log('server connection error');
     });
 
-}).listen(PORT);
+});
 
-console.log('TCP socket server running on port ' + PORT);
+server.on('listening', function() {
+
+    console.log('TCP socket server running on port ' + PORT);
+});
+
+server.on('close', function() {
+
+    console.log('server close');
+});
+
+server.on('error', function(e) {
+
+    console.log('server error:', e);
+});
+
+server.listen(PORT);
+
