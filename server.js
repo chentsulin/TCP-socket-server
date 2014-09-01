@@ -12,6 +12,7 @@ var server = net.createServer(function(socket) {
 
     socket.write('connected with the socket server');
 
+    socket.setEncoding('utf8');
     socket.setTimeout(15000);
 
     socket.on('data', function(data) {
