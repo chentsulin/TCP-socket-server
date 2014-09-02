@@ -10,10 +10,12 @@ var server = net.createServer(function(socket) {
     console.log('remote - ' + socket.remoteAddress + ':' + socket.remotePort);
     console.log('local - '  + socket.localAddress  + ':' + socket.localPort);
 
-    socket.write('connected with the socket server');
+
 
     socket.setEncoding('utf8');
-    socket.setTimeout(15000);
+
+    socket.write('connected with the socket server');
+    // socket.setTimeout(15000);
 
     socket.on('data', function(data) {
 
@@ -41,6 +43,10 @@ var server = net.createServer(function(socket) {
 
         console.log('server connection error');
     });
+
+    setInterval(function() {
+        console.log('flushed:', socket.write('send string'));
+    }, 3000);
 
 });
 
