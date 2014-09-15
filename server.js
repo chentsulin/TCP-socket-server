@@ -1,8 +1,9 @@
+var argv = require('minimist')(process.argv.slice(2));
 
 var net = require('net');
 
 
-var PORT = 100;
+var PORT = argv.p || 100;
 
 var server = net.createServer(function(socket) {
 
